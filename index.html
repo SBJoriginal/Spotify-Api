@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Top Items</title>
+</head>
+<body>
+    <h1>Spotify Top Items</h1>
+
+    <button id="login-button" onclick="loginWithSpotify()">Login to Spotify</button>
+
+    <select id="item-type">
+        <option value="artists">Top Artists</option>
+        <option value="tracks">Top Tracks</option>
+    </select>
+
+    <div id="items-list">Loading your top items...</div>
+
+    <!-- Artist template -->
+    <template id="artist-template">
+        <div class="item">
+            <h2 class="artist-name"></h2>
+            <p class="artist-genres"></p>
+            <p class="artist-followers"></p>
+            <img class="artist-image" width="200">
+        </div>
+    </template>
+
+    <!-- Track template -->
+    <template id="track-template">
+        <div class="item">
+            <h2 class="track-name"></h2>
+            <p class="track-artists"></p>
+            <p class="track-album"></p>
+            <img class="track-image" width="200">
+        </div>
+    </template>
+
+    <script src="spotify.js"></script>
+</body>
+</html>
