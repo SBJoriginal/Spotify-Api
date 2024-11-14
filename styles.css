@@ -1,22 +1,190 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
+    text-align: center;
+    padding-top: 30px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Button Styling */
+button {
+    background-color: #1DB954; /* Spotify green */
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1ed760; /* Lighter green on hover */
+}
+
+select {
+    padding: 10px;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    border-color: #1DB954;
+}
+
+/* Main Items List */
+#items-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin-top: 30px;
+}
+
 .item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    margin-bottom: 300px;
+    justify-content: space-between;
+    overflow: hidden;
+    height: 100%;
 }
 
-.track-image {
+.item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Aligning elements */
+.item p {
     margin-bottom: 10px;
+    color: #7f8c8d;
 }
 
-.artist-link{
-    margin-top: 10px;
+.item .artist-name,
+.item .track-name {
+    font-size: 1.5rem;
+    color: #2c3e50;
 }
 
-.track-preview-audio {
+.artist-genres, .track-artists, .track-album {
+    font-size: 1rem;
+    color: #34495e;
+}
+
+.artist-followers, .track-playcount, .track-total-listens {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Spacing and alignment between elements */
+.artist-image, .track-image {
     width: 100%;
-    max-width: 400px;
-    margin-top: 0px;
-    opacity: 0;
+    max-width: 200px;  /* Set a max-width to ensure they don't stretch too wide */
+    border-radius: 10px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.artist-link, .track-preview-audio {
+    color: #1DB954;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    margin-top: auto;  /* Ensures that 'Visit on Spotify' is pushed to the bottom */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.artist-link:hover, .track-preview-audio:hover {
+    color: #1ed760;
+}
+
+/* Hide audio player initially */
+.track-preview-audio {
+    display: none;
+    opacity: 0.9;
+    border-radius: 8px;
+    width: 100%;
+}
+
+.item:hover .track-preview-audio {
+    display: block;
+}
+
+/* Playcount and Link Position */
+.track-playcount, .artist-playcount {
+    margin-bottom: 15px;  /* Space between playcount and the link */
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .item {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    select {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .item {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+
+    select {
+        font-size: 0.9rem;
+    }
 }
