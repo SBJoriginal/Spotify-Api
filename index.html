@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Spotify Top Items</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Spotify Top Items</h1>
@@ -22,8 +23,9 @@
         <div class="item">
             <h2 class="artist-name"></h2>
             <p class="artist-genres"></p>
-            <p class="artist-followers"></p>
+            <p class="artist-followers"></p>            
             <img class="artist-image" width="200">
+            <a class="artist-link" href="#" target="_blank">View on Spotify</a>
         </div>
     </template>
 
@@ -34,9 +36,13 @@
             <p class="track-artists"></p>
             <p class="track-album"></p>
             <img class="track-image" width="200">
+            <audio class="track-preview-audio" controls>
+                <source src="#" type="audio/mpeg">
+            </audio>
         </div>
     </template>
 
-    <script src="spotify.js"></script>
+    <!-- Link the JS files from the 'javascript' folder -->
+    <script type="module" src="javascript/app.js"></script>
 </body>
 </html>
