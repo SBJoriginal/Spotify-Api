@@ -27,9 +27,35 @@ export function displayTracks(items) {
 
         const trackPreviewAudio = itemElement.querySelector('.track-preview-audio');
         if (trackPreviewAudio && item.preview_url) {
-            trackPreviewAudio.querySelector('source').src = item.preview_url;
+            const audioSource = trackPreviewAudio.querySelector('source');
+            audioSource.src = item.preview_url;
             trackPreviewAudio.load();
+            
+            // Set the volume to 30%
+            trackPreviewAudio.volume = 0.3; // 0.3 is 30% of the max volume
         }
+
+        // Set up Intersection Observer to play audio when it's in view
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Play the audio when it comes into view
+                    const audioElement = entry.target;
+                    audioElement.play();
+                } else {
+                    // Pause the audio when it leaves the view
+                    const audioElement = entry.target;
+                    audioElement.pause();
+                    audioElement.currentTime = 0; // Reset to the beginning
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the element is in view
+        });
+
+        // Start observing the track preview audio element
+        const trackAudioElement = itemElement.querySelector('.track-preview-audio');
+        observer.observe(trackAudioElement);
 
         // Append the item to the list
         itemsList.appendChild(itemElement);
