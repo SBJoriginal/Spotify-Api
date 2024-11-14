@@ -14,6 +14,7 @@
     <select id="item-type">
         <option value="artists">Top Artists</option>
         <option value="tracks">Top Tracks</option>
+       
     </select>
 
     <div id="items-list">Loading your top items...</div>
@@ -24,9 +25,10 @@
             <p class="item-number"></p>
             <h2 class="artist-name"></h2>
             <p class="artist-genres"></p>
-            <p class="artist-followers"></p>            
+            <p class="artist-followers"></p>
+            <p class="artist-playcount"></p>
             <img class="artist-image" width="200">
-            <a class="artist-link" href="#" target="_blank">View on Spotify</a>
+            <a class="artist-link" href="#">Visit on Spotify</a>
         </div>
     </template>
 
@@ -37,6 +39,8 @@
             <h2 class="track-name"></h2>
             <p class="track-artists"></p>
             <p class="track-album"></p>
+            <p class="track-playcount"></p>
+            <p class="track-total-listens"></p>
             <img class="track-image" width="200">
             <audio class="track-preview-audio" controls>
                 <source src="#" type="audio/mpeg">

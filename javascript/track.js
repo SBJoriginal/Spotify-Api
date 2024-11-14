@@ -1,3 +1,5 @@
+import { getTrackInfoFromLastFM } from './last.fm/track_info.js';
+
 export function displayTracks(items) {
     const itemsList = document.getElementById('items-list');
     itemsList.innerHTML = '';
@@ -8,19 +10,13 @@ export function displayTracks(items) {
 
         const trackNumber = document.createElement('p');
         trackNumber.innerText = `#${index + 1}`;
-        itemElement.querySelector('.track-name').insertAdjacentElement('beforebegin', trackNumber);
+        itemElement.querySelector('.item-number').insertAdjacentElement('beforebegin', trackNumber);
 
         itemElement.querySelector('.track-name').innerText = item.name;
         itemElement.querySelector('.track-artists').innerText = `Artists: ${item.artists.map(artist => artist.name).join(', ')}`;
         itemElement.querySelector('.track-album').innerText = `Album: ${item.album.name}`;
         itemElement.querySelector('.track-image').src = item.album.images[0]?.url || '';
         itemElement.querySelector('.track-image').alt = item.name;
-
-        const trackPreviewLink = itemElement.querySelector('.track-preview-link');
-        if (trackPreviewLink && item.preview_url) {
-            trackPreviewLink.href = item.preview_url;
-            trackPreviewLink.innerText = "Preview this track";
-        }
 
         const trackPreviewAudio = itemElement.querySelector('.track-preview-audio');
         if (trackPreviewAudio && item.preview_url) {
@@ -30,22 +26,38 @@ export function displayTracks(items) {
             trackPreviewAudio.volume = 0.1;
         }
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const audioElement = entry.target;
-                if (entry.isIntersecting) {
-                    audioElement.play();
-                } else {
-                    audioElement.pause();
-                    audioElement.currentTime = 0;
-                }
-            });
-        }, {
-            threshold: 0.5
-        });
+        let trackPlaycountElem = itemElement.querySelector('.track-playcount');
+        let trackTotalListensElem = itemElement.querySelector('.track-total-listens');
 
-        const trackAudioElement = itemElement.querySelector('.track-preview-audio');
-        observer.observe(trackAudioElement);
+        if (!trackPlaycountElem) {
+            trackPlaycountElem = document.createElement('p');
+            trackPlaycountElem.classList.add('track-playcount');
+            itemElement.appendChild(trackPlaycountElem);
+        }
+
+        if (!trackTotalListensElem) {
+            trackTotalListensElem = document.createElement('p');
+            trackTotalListensElem.classList.add('track-total-listens');
+            itemElement.appendChild(trackTotalListensElem);
+        }
+
+        const artistName = item.artists[0].name;
+        const trackName = item.name;
+
+        getTrackInfoFromLastFM(artistName, trackName).then(trackInfo => {
+            if (trackInfo) {
+                const totalListens = trackInfo.totalListens || 'N/A';  
+                const playcount = trackInfo.playcount || 'N/A';
+
+                item.totalListens = totalListens;
+                item.playcount = playcount;
+
+                trackPlaycountElem.innerText = `Playcount: ${playcount}`;
+                trackTotalListensElem.innerText = `Minutes Listened: ${totalListens}`;
+            }
+        }).catch(error => {
+            console.error('Error fetching track info:', error);
+        });
 
         itemsList.appendChild(itemElement);
     });
