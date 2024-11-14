@@ -59,6 +59,27 @@ export function displayTracks(items) {
             console.error('Error fetching track info:', error);
         });
 
+         // Set up Intersection Observer to play audio when it's in view
+         const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Play the audio when it comes into view
+                    const audioElement = entry.target;
+                    audioElement.play();
+                } else {
+                    // Pause the audio when it leaves the view
+                    const audioElement = entry.target;
+                    audioElement.pause();
+                    audioElement.currentTime = 0; // Reset to the beginning
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the element is in view
+        });
+        // Start observing the track preview audio element
+        const trackAudioElement = itemElement.querySelector('.track-preview-audio');
+        observer.observe(trackAudioElement);
+
         itemsList.appendChild(itemElement);
     });
 }

@@ -18,7 +18,7 @@ export function fetchUserTopItems(callback) {
     }
 
     const type = document.getElementById('item-type').value;
-    const url = `https://api.spotify.com/v1/me/top/${type}?limit=5&time_range=long_term`;
+    const url = `https://api.spotify.com/v1/me/top/${type}?limit=50&time_range=long_term`;
 
     fetch(url, {
         headers: {
