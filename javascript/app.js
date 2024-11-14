@@ -1,4 +1,3 @@
-// app.js
 import { loginWithSpotify, getAccessTokenFromUrl, fetchUserTopItems } from './api.js';
 import { displayArtists } from './artist.js';
 import { displayTracks } from './track.js';
@@ -6,9 +5,17 @@ import { displayTracks } from './track.js';
 // Function to display items based on the type (artists or tracks)
 function displayItems(items, type) {
     if (type === 'artists') {
-        displayArtists(items);
+        const itemsWithNumbers = items.map((item, index) => {
+            item.number = index + 1;
+            return item;
+        });
+        displayArtists(itemsWithNumbers);  
     } else if (type === 'tracks') {
-        displayTracks(items);
+        const itemsWithNumbers = items.map((item, index) => {
+            item.number = index + 1;
+            return item;
+        });
+        displayTracks(itemsWithNumbers);  
     }
 }
 
@@ -37,6 +44,6 @@ document.addEventListener('DOMContentLoaded', function() {
         loginWithSpotify();
     } else {
         updateLoginButtonVisibility();
-        fetchUserTopItems(displayItems);  // Pass displayItems as the callback
+        fetchUserTopItems(displayItems);  
     }
 });

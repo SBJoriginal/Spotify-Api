@@ -1,21 +1,21 @@
-/* Add this CSS to your <style> tag or a separate stylesheet */
 .item {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center elements horizontally */
-    text-align: center; /* Center text inside the item */
-    margin-bottom: 50px; /* Optional: Space between items */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 50px;
 }
 
 .track-image {
-    margin-bottom: 10px; /* Space between the image and audio player */
+    margin-bottom: 10px;
 }
 
 .artist-link{
-    margin-top: 10px; /* Space between the image and audio player */
+    margin-top: 10px;
 }
+
 .track-preview-audio {
-    width: 100%; /* Make the audio player take up full width of its container */
-    max-width: 400px; /* Limit the audio player size */
-    margin-top: 10px; /* Space between the image and audio player */
+    width: 100%;
+    max-width: 400px;
+    margin-top: 10px;
 }

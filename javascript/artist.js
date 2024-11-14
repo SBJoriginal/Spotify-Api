@@ -1,4 +1,3 @@
-// artist.js
 export function displayArtists(items) {
     const itemsList = document.getElementById('items-list');
     itemsList.innerHTML = '';
@@ -6,6 +5,11 @@ export function displayArtists(items) {
     items.forEach(item => {
         const template = document.getElementById('artist-template');
         const itemElement = template.content.cloneNode(true);
+
+        // Add the number above the artist name
+        const artistNumber = document.createElement('p');
+        artistNumber.innerText = `#${item.number}`; // Display the number
+        itemElement.querySelector('.artist-name').insertAdjacentElement('beforebegin', artistNumber);
 
         itemElement.querySelector('.artist-name').innerText = item.name;
         itemElement.querySelector('.artist-genres').innerText = `Genres: ${item.genres.join(', ')}`;
