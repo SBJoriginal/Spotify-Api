@@ -73,8 +73,6 @@ export function displayTracks(items) {
                     audioElement.currentTime = 0; // Reset to the beginning
                 }
             });
-        }, {
-            threshold: 0.5 // Trigger when 50% of the element is in view
         });
         // Start observing the track preview audio element
         const trackAudioElement = itemElement.querySelector('.track-preview-audio');
