@@ -10,7 +10,7 @@ export async function getTrackInfoFromLastFM(artist, track) {
         if (data.track) {
             const duration = data.track.duration;
             const playcount = data.track.userplaycount;
-            const totalListens = (duration / 60000) * playcount;
+            const totalListens = Math.ceil(((duration / 60000) * playcount) * 10) / 10;
 
             return { totalListens, playcount };
         } else {
