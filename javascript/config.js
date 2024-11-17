@@ -6,7 +6,7 @@ export const LASTFM = {
 };
 
 export const SPOTIFY = {
-    CLIENT_ID: '6f326d2099ff4ba2be50e39d0af8ebf4',
+    CLIENT_ID: 'c8e5c7569c5b4ff8b8cc506f25b68fbe',
     REDIRECT_URI: 'http://localhost:5501/index.html',
     SCOPES: 'user-top-read'
 };
